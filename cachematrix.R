@@ -5,6 +5,12 @@
 ## this function returns a list which is an output of those 4 functions including get, set and getInv and setInv
 ## shortly I can say that the first function acts like a container
 
+## with this order functions inside do these tasks :
+##  set the value of the matrix
+##  get the value of the matrix
+##  set the value of the inverse
+##  get the value of the inverse
+
 
 makeCacheMatrix <- function(x = matrix()) {
       Inv <- NULL
