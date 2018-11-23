@@ -1,15 +1,38 @@
-## Put comments here that give an overall description of what your
-## functions do
+##  pass a matrix with non zero determinant and also square shaped and these finctions will return the inverse matrix to you fast and memory efficient using caching methods
+## ----------------
 
-## Write a short comment describing this function
+## Just like the example I'm going to use four sets of functions for first #makeCacheMatrix function.
+## this function returns a list which is an output of those 4 functions including get, set and getInv and setInv
+## shortly I can say that the first function acts like a container
+
 
 makeCacheMatrix <- function(x = matrix()) {
-
+      Inv <- NULL
+      set <- function(y) {
+            y <<- x
+            Inv <<- NULL
+      }
+      get <- function() x
+      setInv <- function(inverse) Inv <<- inverse
+      getInv <- function() Inv
+      list(set = set ,
+           get = get ,
+           setInv = setInv ,
+           getInv = getInv )
 }
 
-
-## Write a short comment describing this function
+## ---------------------
+## this function uses the list provided in previous snippet and runs solve function and returns the inverse matrix
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+      
+      Inv <- x$getInv()
+      if (!is.null(Inv)){
+            message('you input list proccessed by makeCacheMatric func')
+            return(Inv)
+      }
+      data <- x$get()
+      Inv <- solve(data , ...)
+      x$setInv(Inv)
+      Inv
 }
